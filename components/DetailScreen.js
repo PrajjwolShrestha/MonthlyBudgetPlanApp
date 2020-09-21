@@ -30,6 +30,7 @@ export const DetailScreen = ( props ) => {
               amount: amount,
               note: props.route.params.note,
               category: props.route.params.category,
+              month: props.route.params.month,
               id: props.route.params.id
             }
             props.update( item )
@@ -41,6 +42,7 @@ export const DetailScreen = ( props ) => {
       />
       <DateFormat date={props.route.params.id} styling={styles.date} />
       <Text style={styles.date}>{props.route.params.category}</Text>
+      <Text style={styles.date}>{props.route.params.month}</Text>
       <Text style={styles.date}>{note}</Text>
       <TextInput style={styles.data} />
       <Button title="Edit" />
@@ -51,6 +53,7 @@ export const DetailScreen = ( props ) => {
           navigation.goBack()
         }}
       />
+      
     </View>
   )
 }

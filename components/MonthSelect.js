@@ -1,18 +1,20 @@
 import React, {useState} from 'react'
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Modal, Image } from 'react-native'
 
-export const Select = (props) => {
-  const [selected,setSelected] = useState('select category')
+export const MonthSelect = (props) => {
+  const [monthselected,setMonthSelected] = useState('select month')
 
   const [visible, setVisible] = useState(false)
 
-  const Items = props.items.map((item,index) => {
+  
+
+  const MonthItems = props.items.map((item,index) => {
     return (
       <TouchableOpacity 
         style={selectStyles.selectItem} 
         key={index} 
         onPress={()=> { 
-          setSelected(item.value)
+          setMonthSelected(item.value)
           props.onSelect(item.value)
           setVisible(false) 
         }} 
@@ -22,12 +24,10 @@ export const Select = (props) => {
     )
   })
 
-  
-
   return (
     <View style={selectStyles.selectView}>
       <TouchableOpacity onPress={() => setVisible(true) } >
-        <Text>{selected}</Text>
+        <Text>{monthselected}</Text>
         <Image 
           style={selectStyles.selectImage} 
           source={require('../assets/chevron-circle-down-solid.png') } 
@@ -41,7 +41,7 @@ export const Select = (props) => {
       >
         <View style={selectStyles.modalView}>
           <ScrollView>
-            {Items}
+            {MonthItems}
           </ScrollView>
         </View>
       </Modal>

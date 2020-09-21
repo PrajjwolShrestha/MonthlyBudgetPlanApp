@@ -50,7 +50,8 @@ export default function App() {
     const dataObj = { 
       amount: item.amount,
       note: item.note,
-      category: item.category
+      category: item.category,
+      month: item.month
     }
     firebase.database().ref(`${dataRef}/items/${item.id}`).set(dataObj, () => {
       // update state for rendering of list
@@ -82,7 +83,7 @@ export default function App() {
 
   const updateData = (item) => {
     setUpdating(false)
-    const data = {amount: item.amount,note: item.note, category: item.category }
+    const data = {amount: item.amount,note: item.note, category: item.category, month: item.month }
     firebase.database().ref(`${dataRef}/items/${item.id}`).update( data )
     .then(() => {
       // data is updated
@@ -133,7 +134,7 @@ export default function App() {
         <Stack.Screen 
           name="Home"
           options={({navigation,route}) => ({
-            headerTitle: "Expenses",
+            headerTitle: "Monthly Budget Planning",
             headerRight: () => (
               <TouchableOpacity style={styles.signout} onPress={ () => {
                 firebase.auth().signOut().then( () => {
@@ -147,7 +148,7 @@ export default function App() {
           })}
         >
           { (props) => <HomeScreen {...props} 
-          text="Hello Home Screen" 
+          text="Welcome to Home Screen" 
           data={listData}
           add={addData}
           extra={updating}
