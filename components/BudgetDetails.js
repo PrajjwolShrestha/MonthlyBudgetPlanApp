@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import { DateFormat } from './DateFormat'
+import { DateFormat } from './DateComponent'
 
-export const DetailScreen = ( props ) => {
+export const BudgetDetails = ( props ) => {
   const [amount,setAmount] = useState(props.route.params.amount)
   const [editing,setEditing] = useState(false)
   const [note,setNote] = useState(props.route.params.note)

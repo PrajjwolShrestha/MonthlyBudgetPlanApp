@@ -2,12 +2,12 @@ import React, {useState, useEffect} from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Button, FlatList } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { TextInput } from 'react-native-gesture-handler'
-import { Select } from './Select'
+import { CategorySelect } from './CategorySelect'
 import { MonthSelect} from './MonthSelect'
 
 
 
-export const HomeScreen = (props) => {
+export const MainScreen = (props) => {
   const selectItems = [
     {label: "Food", value: "food"},
     {label: "Transport", value: "transport"},
@@ -93,7 +93,7 @@ export const HomeScreen = (props) => {
         <View style={homeStyle.monthStyle}>
           <MonthSelect items={selectMonths} onSelect={setMonth} />
         </View>
-        <Select items={selectItems} onSelect={setCategory} />
+        <CategorySelect items={selectItems} onSelect={setCategory} />
 
 
         <TextInput 

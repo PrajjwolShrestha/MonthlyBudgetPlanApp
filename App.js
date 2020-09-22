@@ -5,7 +5,7 @@ import { NavigationContainer, StackActions } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 
 // firebase config
-import {firebaseConfig} from './config/firebase'
+import {firebaseConfig} from './config/FirebaseConfiguration'
 // firebase library
 import * as firebase from 'firebase'
 // initialise app
@@ -13,9 +13,9 @@ if ( !firebase.apps.length ){
   firebase.initializeApp( firebaseConfig )
 }
 
-import { HomeScreen } from './components/HomeScreen'
-import { DetailScreen } from './components/DetailScreen'
-import { AuthScreen } from './components/AuthScreen'
+import { MainScreen } from './components/MainScreen'
+import { BudgetDetails } from './components/BudgetDetails'
+import { Authentication } from './components/Authentication'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function App() {
@@ -129,7 +129,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Register">
-          { (props) => <AuthScreen {...props} signup={ register } loggedIn={auth} /> }
+          { (props) => <Authentication {...props} signup={ register } loggedIn={auth} /> }
         </Stack.Screen>
         <Stack.Screen 
           name="Home"
@@ -147,7 +147,7 @@ export default function App() {
             )
           })}
         >
-          { (props) => <HomeScreen {...props} 
+          { (props) => <MainScreen {...props} 
           text="Welcome to Home Screen" 
           data={listData}
           add={addData}
@@ -155,7 +155,7 @@ export default function App() {
            /> }
         </Stack.Screen>
         <Stack.Screen name="Detail">
-          { (props) => <DetailScreen {...props} update={updateData} delete={deleteData} /> }
+          { (props) => <BudgetDetails {...props} update={updateData} delete={deleteData} /> }
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>

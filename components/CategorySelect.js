@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Modal, Image } from 'react-native'
 
-export const Select = (props) => {
+export const CategorySelect = (props) => {
   const [selected,setSelected] = useState('select category')
 
   const [visible, setVisible] = useState(false)
