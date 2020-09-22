@@ -1,34 +1,34 @@
 import React, {useState, useEffect} from 'react'
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation as navigateScreen } from '@react-navigation/native'
 import { DateFormat } from './DateComponent'
 
 export const BudgetDetails = ( props ) => {
-  const [amount,setAmount] = useState(props.route.params.amount)
-  const [editing,setEditing] = useState(false)
-  const [note,setNote] = useState(props.route.params.note)
+  const [budgetAmount,setBudgetAmount] = useState(props.route.params.amount)
+  const [edit,setEdit] = useState(false)
+  const [description,setDescription] = useState(props.route.params.note)
 
-  const navigation = useNavigation()
+  const screenNavigation = navigateScreen()
 
   return (
     <View>
-      <Text style={[styles.amount, { display: editing ? 'none' : 'flex'} ]}>
-        $ {amount}
+      <Text style={[styles.budgetAmount, { display: edit ? 'none' : 'flex'} ]}>
+        $ {budgetAmount}
       </Text>
       <TextInput 
-        style={[styles.amount, {display: editing ? 'flex' : 'none'}]} 
-        placeholder={amount} 
-        onChangeText={ (amount) => { setAmount(amount) }}
+        style={[styles.budgetAmount, {display: edit ? 'flex' : 'none'}]} 
+        placeholder={budgetAmount} 
+        onChangeText={ (budgetAmount) => { setBudgetAmount(budgetAmount) }}
         keyboardType="decimal-pad"
       />
       <Button 
-        title={ editing? "save" : "edit" } 
+        title={ edit? "save" : "edit" } 
         onPress={ () => { 
-          if( editing ) {
-            setEditing(false)
+          if( edit ) {
+            setEdit(false)
             let item = {
-              amount: amount,
-              note: props.route.params.note,
+              budgetAmount: budgetAmount,
+              description: props.route.params.note,
               category: props.route.params.category,
               month: props.route.params.month,
               id: props.route.params.id
@@ -36,21 +36,21 @@ export const BudgetDetails = ( props ) => {
             props.update( item )
           }
           else {
-            setEditing(true) 
+            setEdit(true) 
           }
         } } 
       />
       <DateFormat date={props.route.params.id} styling={styles.date} />
       <Text style={styles.date}>{props.route.params.category}</Text>
       <Text style={styles.date}>{props.route.params.month}</Text>
-      <Text style={styles.date}>{note}</Text>
+      <Text style={styles.date}>{description}</Text>
       <TextInput style={styles.data} />
       <Button title="Edit" />
       <Button 
         title="Delete" 
         onPress={ () => { 
           props.delete(props.route.params.id) 
-          navigation.goBack()
+          screenNavigation.goBack()
         }}
       />
       
@@ -59,7 +59,7 @@ export const BudgetDetails = ( props ) => {
 }
 
 const styles = StyleSheet.create({
-  amount: {
+  budgetAmount: {
     textAlign: 'center',
     fontSize: 32,
     marginVertical: 15,
