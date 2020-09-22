@@ -4,9 +4,9 @@ import { useNavigation as navigateScreen } from '@react-navigation/native'
 import { DateFormat } from './DateComponent'
 
 export const BudgetDetails = ( props ) => {
-  const [budgetAmount,setBudgetAmount] = useState(props.route.params.amount)
+  const [budgetAmount,setBudgetAmount] = useState(props.route.params.budgetAmount)
   const [edit,setEdit] = useState(false)
-  const [description,setDescription] = useState(props.route.params.note)
+  const [description,setDescription] = useState(props.route.params.description)
 
   const screenNavigation = navigateScreen()
 

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Button, FlatList } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation as navigateScreen } from '@react-navigation/native'
 import { TextInput } from 'react-native-gesture-handler'
 import { CategorySelect } from './CategorySelect'
 import { MonthSelect} from './MonthSelect'
@@ -8,7 +8,7 @@ import { MonthSelect} from './MonthSelect'
 
 
 export const MainScreen = (props) => {
-  const selectItems = [
+  const selectCategory = [
     {label: "Food", value: "food"},
     {label: "Transport", value: "transport"},
     {label: "Groceries", value: "groceries"},
@@ -36,20 +36,20 @@ export const MainScreen = (props) => {
 
   const [category,setCategory] = useState(null)
   const [month,setMonth] = useState(null)
-  const [amount,setAmount] = useState(0)
-  const [note,setNote] = useState(null)
+  const [budgetAmount,setBudgetAmount] = useState(0)
+  const [description,setDescription] = useState(null)
 
-  const [validAmount,setValidAmount] = useState(false)
+  const [validBudgetAmount,setValidBudgetAmount] = useState(false)
 
-  const navigation = useNavigation()
+  const screenNavigation = navigateScreen()
 
-  const validateAmount = (amount) => {
-    if( parseFloat(amount) ) {
-      setValidAmount(true)
-      setAmount(amount)
+  const validateBudgetAmount = (budgetAmount) => {
+    if( parseFloat(budgetAmount) ) {
+      setValidBudgetAmount(true)
+      setBudgetAmount(budgetAmount)
     }
     else {
-      setValidAmount(false)
+      setValidBudgetAmount(false)
     }
   }
 
@@ -57,16 +57,16 @@ export const MainScreen = (props) => {
     const itemId = new Date().getTime()
     const itemMonth = month
 
-    const itemAmount = amount
+    const itemAmount = budgetAmount
     const itemCategory = category
-    const itemNote = note
+    const itemNote = description
     props.add({
       id: itemId,
       month: itemMonth,
 
-      amount: itemAmount,
+      budgetAmount: itemAmount,
       category: itemCategory,
-      note: itemNote
+      description: itemNote
     })
   }
 
@@ -74,7 +74,7 @@ export const MainScreen = (props) => {
     <ListItem 
     id={item.id} 
     month={item.month}
-    amount={item.amount} 
+    budgetAmount={item.budgetAmount} 
     category={item.category} 
     clickHandler = {showDetail}
     item = {item}
@@ -82,7 +82,7 @@ export const MainScreen = (props) => {
   )
   
   const showDetail = ( item ) => {
-    navigation.navigate("Detail", item )
+    screenNavigation.navigate("Detail", item )
   }
 
   return (
@@ -93,24 +93,24 @@ export const MainScreen = (props) => {
         <View style={homeStyle.monthStyle}>
           <MonthSelect items={selectMonths} onSelect={setMonth} />
         </View>
-        <CategorySelect items={selectItems} onSelect={setCategory} />
+        <CategorySelect items={selectCategory} onSelect={setCategory} />
 
 
         <TextInput 
           style={homeStyle.input} 
-          placeholder="amount" 
-          onChangeText={ (amount) => validateAmount(amount) }
+          placeholder="Monthly Budget Amount" 
+          onChangeText={ (budgetAmount) => validateBudgetAmount(budgetAmount) }
           keyboardType='decimal-pad'
         />
 
         <TextInput 
           style={homeStyle.input} 
-          placeholder="notes" 
-          onChangeText={ (note) => setNote(note)}
+          placeholder="Description or plans or notes" 
+          onChangeText={ (description) => setDescription(description)}
         />
         <TouchableOpacity 
-          style={ validAmount && category && month ? homeStyle.button : homeStyle.buttonDisabled }
-          disabled={ validAmount && category && month ? false : true }
+          style={ validBudgetAmount && category && month ? homeStyle.button : homeStyle.buttonDisabled }
+          disabled={ validBudgetAmount && category && month ? false : true }
           onPress={ () => { addItem() } }
         >
           <Text style={homeStyle.buttonText}>Add</Text>
@@ -132,7 +132,7 @@ const ListItem = (props) => {
       <View style={homeStyle.item}>
         <Text>{props.category}</Text>
         <Text>{props.month}</Text>
-        <Text>$ {props.amount}</Text>
+        <Text>$ {props.budgetAmount}</Text>
       </View>
     </TouchableOpacity>
   )

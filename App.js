@@ -48,8 +48,8 @@ export default function App() {
     }
     setUpdating(false)
     const dataObj = { 
-      amount: item.amount,
-      note: item.note,
+      budgetAmount: item.budgetAmount,
+      description: item.description,
       category: item.category,
       month: item.month
     }
@@ -83,7 +83,7 @@ export default function App() {
 
   const updateData = (item) => {
     setUpdating(false)
-    const data = {amount: item.amount,note: item.note, category: item.category, month: item.month }
+    const data = {budgetAmount: item.budgetAmount,description: item.description, category: item.category, month: item.month }
     firebase.database().ref(`${dataRef}/items/${item.id}`).update( data )
     .then(() => {
       // data is updated

@@ -2,17 +2,17 @@ import React, {useState} from 'react'
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Modal, Image } from 'react-native'
 
 export const CategorySelect = (props) => {
-  const [selected,setSelected] = useState('select category')
+  const [categorySelected,setCategorySelected] = useState('Please select category for your budget planning:')
 
   const [visible, setVisible] = useState(false)
 
-  const Items = props.items.map((item,index) => {
+  const CategoryItems = props.items.map((item,index) => {
     return (
       <TouchableOpacity 
-        style={selectStyles.selectItem} 
+        style={selectStyles.selectCategory} 
         key={index} 
         onPress={()=> { 
-          setSelected(item.value)
+          setCategorySelected(item.value)
           props.onSelect(item.value)
           setVisible(false) 
         }} 
@@ -25,11 +25,11 @@ export const CategorySelect = (props) => {
   
 
   return (
-    <View style={selectStyles.selectView}>
+    <View style={selectStyles.categoryView}>
       <TouchableOpacity onPress={() => setVisible(true) } >
-        <Text>{selected}</Text>
+        <Text>{categorySelected}</Text>
         <Image 
-          style={selectStyles.selectImage} 
+          style={selectStyles.categorySelectImg} 
           source={require('../assets/chevron-circle-down-solid.png') } 
         />
       </TouchableOpacity>
@@ -41,7 +41,7 @@ export const CategorySelect = (props) => {
       >
         <View style={selectStyles.modalView}>
           <ScrollView>
-            {Items}
+            {CategoryItems}
           </ScrollView>
         </View>
       </Modal>
@@ -50,20 +50,20 @@ export const CategorySelect = (props) => {
 }
 
 const selectStyles = StyleSheet.create({
-  selectView: {
+  categoryView: {
     padding: 10,
     borderColor: '#cccccc',
     borderWidth: 1,
     borderRadius: 10,
   },
-  selectImage: {
+  categorySelectImg: {
     width: 15,
     height: 15,
     position: 'absolute',
     right: 3,
     top: 3,
   },
-  selectItem: {
+  selectCategory: {
     paddingVertical: 10,
     paddingHorizontal: 5,
     borderBottomColor: '#dddddd',
@@ -71,6 +71,6 @@ const selectStyles = StyleSheet.create({
   },
   modalView: {
     marginTop: 100,
-    backgroundColor:'lightyellow',
+    backgroundColor:'#9BC53D',
   },
 })
