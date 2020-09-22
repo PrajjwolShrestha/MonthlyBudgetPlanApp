@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import {StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
-import { useNavigation as navigateScreen } from '@react-navigation/native'
+import React, { useState, useEffect } from 'react' //importing useState and useEffect from react
+import {StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native' //import react native components
+import { useNavigation as navigateScreen } from '@react-navigation/native' //import react navigation for navigating between the screens
 
+//export Authentication function and pass prop
 export const Authentication = ( props ) => {
+  //hooks for user login
   const [userLogin,setUserLogin] = useState(false)
   // hooks for validation
   const [validUserEmail,setValidUserEmail] = useState(false)
@@ -13,6 +15,7 @@ export const Authentication = ( props ) => {
 
   const screenNavigation = navigateScreen()
 
+  //use useEffect to navigate to home screen
   useEffect(() => {
     if( props.loggedIn ) {
       screenNavigation.reset({
@@ -22,6 +25,7 @@ export const Authentication = ( props ) => {
     }
   })
 
+  //validating email
   const checkUserEmailValid = (userEmail) => {
     if( userEmail.indexOf('@') > 0 && userEmail.indexOf('.') > 0 ) {
       setValidUserEmail( true )
@@ -32,6 +36,7 @@ export const Authentication = ( props ) => {
     }
   }
 
+  //validating password - checks the length of password 
   const checkUserPasswordValid = (userPassword) => {
     if( userPassword.length >= 8 ) {
       setValidUserPassword( true )
@@ -42,6 +47,7 @@ export const Authentication = ( props ) => {
     }
   }
 
+  //if  user does not have an account, redirect to register page
   if (!userLogin) {
     return (
       // register view
@@ -80,6 +86,7 @@ export const Authentication = ( props ) => {
       </View>
     )
   }
+  //if user has an account then redirect to sign in page for user to sign in
   else {
     return (
       // login view
@@ -119,6 +126,7 @@ export const Authentication = ( props ) => {
 
 }
 
+//stylesheet
 const styles = StyleSheet.create({
   container: {
     flex: 1,

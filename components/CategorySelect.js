@@ -1,11 +1,14 @@
+//import  native components from react and react native
 import React, {useState} from 'react'
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Modal, Image } from 'react-native'
 
+//export CategorySelect function and pass a prop to make category selectable
 export const CategorySelect = (props) => {
-  const [categorySelected,setCategorySelected] = useState('please select category for your budget planning:')
-
+  //hooks for category selection
+  const [categorySelected,setCategorySelected] = useState('please select category for your budget planning:') 
+  //hooks for setting visibility
   const [visible, setVisible] = useState(false)
-
+  //set list of category items return touchable opacity to select category
   const CategoryItems = props.items.map((item,index) => {
     return (
       <TouchableOpacity 
@@ -21,19 +24,16 @@ export const CategorySelect = (props) => {
       </TouchableOpacity>
     )
   })
-
-  
-
+  //get the category selected from the list of categories 
   return (
     <View style={selectStyles.categoryView}>
       <TouchableOpacity onPress={() => setVisible(true) } >
-        <Text>{categorySelected}</Text>
+        <Text style={selectStyles.selectText}>Category: {categorySelected}</Text>
         <Image 
           style={selectStyles.categorySelectImg} 
           source={require('../assets/chevron-circle-down-solid.png') } 
         />
       </TouchableOpacity>
-      
       <Modal
         animationType="slide"
         visible = {visible}
@@ -49,6 +49,7 @@ export const CategorySelect = (props) => {
   )
 }
 
+//stylesheet
 const selectStyles = StyleSheet.create({
   categoryView: {
     padding: 10,
@@ -56,6 +57,9 @@ const selectStyles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 20,
     backgroundColor:'#FCEFEF',
+  },
+  selectText:{
+    color:'black',
   },
   categorySelectImg: {
     width: 15,

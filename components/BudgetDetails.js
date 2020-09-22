@@ -1,38 +1,33 @@
+//import  native components from react native
 import React, {useState, useEffect} from 'react'
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native'
 import { useNavigation as navigateScreen } from '@react-navigation/native'
 import { DateFormat } from './DateComponent'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { TouchableOpacity } from 'react-native-gesture-handler' //import touchable opacity for handling gesture or use it as button
 
+//export const BudgetDetails function and pass prop to get details of budget
 export const BudgetDetails = ( props ) => {
-  const [budgetAmount,setBudgetAmount] = useState(props.route.params.budgetAmount)
-  const [editBudget,setEditBudget] = useState(false)
-  const [editDescription,setEdit] = useState(false)
-  const [description,setDescription] = useState(props.route.params.description)
+  const [budgetAmount,setBudgetAmount] = useState(props.route.params.budgetAmount) //for budget amount
+  const [editBudget,setEditBudget] = useState(false) //for editing budget amount
+  const [editDescription,setEdit] = useState(false) //to edit  description of budget
+  const [description,setDescription] = useState(props.route.params.description) //details or description of budget
 
-  const screenNavigation = navigateScreen()
+  const screenNavigation = navigateScreen() //for navigation
 
+  //returns a view which contains details of budget
   return (
     <View style={styles.container}>
-      
-
       <Text style={styles.month}>This budget is for the month of: {props.route.params.month}</Text>
-
       <Text style={styles.category}>Category: {props.route.params.category}</Text>
-
-
-
       <Text style={[styles.budgetAmount, { display: editBudget ? 'none' : 'flex'} ]}> Budget Amount: 
         $ {budgetAmount}
       </Text>
-
       <TextInput 
         style={[styles.budgetAmount, {display: editBudget ? 'flex' : 'none'}]} 
         placeholder={budgetAmount} 
         onChangeText={ (budgetAmount) => { setBudgetAmount(budgetAmount) }}
         keyboardType="decimal-pad"
       />
-
       <View style={styles.button}>
         <Button 
           title={ editBudget? "Save Budget" : "Edit Budget" } 
@@ -55,15 +50,6 @@ export const BudgetDetails = ( props ) => {
           } } 
         />
       </View>
-      
-
-
-
-
-      
-
-
-
       <Text style={[styles.budgetAmount, { display: editDescription ? 'none' : 'flex'} ]}>
          {description}
       </Text>
@@ -105,10 +91,6 @@ export const BudgetDetails = ( props ) => {
                 }}
         />
       </View>
-      
-
-      
-
       <View style={styles.subView}>
         <Text style={styles.subViewText}>Prepared monthly budget on:</Text>
         <DateFormat date={props.route.params.id} styling={styles.date} />
@@ -118,6 +100,7 @@ export const BudgetDetails = ( props ) => {
   )
 }
 
+//stylesheet
 const styles = StyleSheet.create({
   container:{
     flex:1,
@@ -140,7 +123,8 @@ const styles = StyleSheet.create({
     borderWidth:1,
     borderColor:'#0B0500',
     marginVertical:10,
-    color:'black'
+    color:'black',
+    fontSize:8,
   },
   deletebutton:{
     padding: 5,
@@ -150,6 +134,7 @@ const styles = StyleSheet.create({
     borderColor:'#0B0500',
     marginVertical:10,
     color:'black',
+    fontSize:8,
   },
   subView:{
     backgroundColor:'#A1FCDF',

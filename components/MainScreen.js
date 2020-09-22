@@ -1,13 +1,15 @@
+//import native components from react and react native
 import React, {useState, useEffect} from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Button, FlatList } from 'react-native'
 import { useNavigation as navigateScreen } from '@react-navigation/native'
 import { TextInput } from 'react-native-gesture-handler'
+//importing functions from component folder
 import { CategorySelect } from './CategorySelect'
 import { MonthSelect} from './MonthSelect'
 
-
-
+//export mainScreen function and passing prop to display categories and months in main page
 export const MainScreen = (props) => {
+  //declaring constant array of categories
   const selectCategory = [
     {label: "Food", value: "food"},
     {label: "Transport", value: "transport"},
@@ -19,6 +21,7 @@ export const MainScreen = (props) => {
     {label: "Other", value: "other"},
   ]
 
+  //declaring constant arrays of months
   const selectMonths = [
     {label: "Jan", value: "Jan"},
     {label: "Feb", value: "Feb"},
@@ -34,15 +37,18 @@ export const MainScreen = (props) => {
     {label: "Dec", value: "Dec"},
   ]
 
+  //using hooks for category
   const [category,setCategory] = useState(null)
+  //using hooks for month
   const [month,setMonth] = useState(null)
-  const [budgetAmount,setBudgetAmount] = useState(0)
-  const [description,setDescription] = useState(null)
+  const [budgetAmount,setBudgetAmount] = useState(0) //for budget
+  const [description,setDescription] = useState(null) //for the description of budget 
 
-  const [validBudgetAmount,setValidBudgetAmount] = useState(false)
+  const [validBudgetAmount,setValidBudgetAmount] = useState(false) //check or validate budget amount
 
-  const screenNavigation = navigateScreen()
+  const screenNavigation = navigateScreen() //navigate between the screens
 
+  //check the budget is valid or not 
   const validateBudgetAmount = (budgetAmount) => {
     if( parseFloat(budgetAmount) ) {
       setValidBudgetAmount(true)
@@ -53,6 +59,7 @@ export const MainScreen = (props) => {
     }
   }
 
+  //get id of an item using time function and add item to list
   const addItem = () => {
     const itemId = new Date().getTime()
     const itemMonth = month
@@ -70,6 +77,7 @@ export const MainScreen = (props) => {
     })
   }
 
+  //render the list of an item and pass their value
   const renderList = ({item}) => (
     <ListItem 
     id={item.id} 
@@ -81,10 +89,12 @@ export const MainScreen = (props) => {
     />
   )
   
+  //based on id, show the details of that item
   const showDetail = ( item ) => {
     screenNavigation.navigate("Detail", item )
   }
 
+  //return the main screen components  
   return (
     <View style={homeStyle.container}>
       <View>
@@ -117,6 +127,11 @@ export const MainScreen = (props) => {
         >
           <Text style={homeStyle.buttonText}>Add</Text>
         </TouchableOpacity>
+        <View style={homeStyle.itemheading}>
+          <Text style={homeStyle.itemheadingText}>Month</Text>
+          <Text style={homeStyle.itemheadingText}>Category</Text>
+          <Text style={homeStyle.itemheadingText}>Budget</Text>
+        </View>
       </View>
       <FlatList
         data = {props.data}
@@ -128,6 +143,9 @@ export const MainScreen = (props) => {
   )
 }
 
+//prepare the list of an item and make it clickable
+//when clicked, prompt to its detail screen
+//display item list in flatlist
 const ListItem = (props) => {
   return (
     <TouchableOpacity onPress={ () => props.clickHandler(props.item) }>
@@ -140,6 +158,7 @@ const ListItem = (props) => {
   )
 }
 
+//stylesheet
 const homeStyle = StyleSheet.create({
   container: {
     flex: 1,
@@ -156,6 +175,21 @@ const homeStyle = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor:'#FCEFEF',
     marginVertical:10,
+  },
+  itemheading: {
+    display:'flex',
+    paddingHorizontal: 15,
+    paddingVertical: 20,
+    borderWidth: 1,
+    borderColor: 'black',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor:'#F9E9EC',
+    marginVertical:10,
+  },
+  itemheadingText:{
+    fontWeight:'600',
+    fontSize:16,
   },
   input: {
     padding: 10,
