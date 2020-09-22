@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Modal, Image } from 'react-native'
 
 export const CategorySelect = (props) => {
-  const [categorySelected,setCategorySelected] = useState('Please select category for your budget planning:')
+  const [categorySelected,setCategorySelected] = useState('please select category for your budget planning:')
 
   const [visible, setVisible] = useState(false)
 
@@ -52,9 +52,10 @@ export const CategorySelect = (props) => {
 const selectStyles = StyleSheet.create({
   categoryView: {
     padding: 10,
-    borderColor: '#cccccc',
+    borderColor: 'black',
     borderWidth: 1,
-    borderRadius: 10,
+    borderRadius: 20,
+    backgroundColor:'#FCEFEF',
   },
   categorySelectImg: {
     width: 15,
@@ -66,11 +67,17 @@ const selectStyles = StyleSheet.create({
   selectCategory: {
     paddingVertical: 10,
     paddingHorizontal: 5,
-    borderBottomColor: '#dddddd',
+    borderBottomColor: '#FCAB64',
     borderBottomWidth: 1,
+    
   },
   modalView: {
     marginTop: 100,
-    backgroundColor:'#9BC53D',
+    backgroundColor:'#FCEFEF',
+    justifyContent:'center',
+    borderWidth:1,
+    borderColor:'black',
+     
+
   },
 })

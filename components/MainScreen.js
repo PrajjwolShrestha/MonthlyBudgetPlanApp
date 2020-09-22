@@ -93,19 +93,21 @@ export const MainScreen = (props) => {
         <View style={homeStyle.monthStyle}>
           <MonthSelect items={selectMonths} onSelect={setMonth} />
         </View>
-        <CategorySelect items={selectCategory} onSelect={setCategory} />
+        <CategorySelect style={homeStyle.monthStyle}  items={selectCategory} onSelect={setCategory} />
 
 
         <TextInput 
           style={homeStyle.input} 
-          placeholder="Monthly Budget Amount" 
+          placeholder="monthly budget amount" 
+          placeholderTextColor='grey'
           onChangeText={ (budgetAmount) => validateBudgetAmount(budgetAmount) }
           keyboardType='decimal-pad'
         />
 
         <TextInput 
           style={homeStyle.input} 
-          placeholder="Description or plans or notes" 
+          placeholder="description or plans or notes" 
+          placeholderTextColor='grey'
           onChangeText={ (description) => setDescription(description)}
         />
         <TouchableOpacity 
@@ -130,8 +132,8 @@ const ListItem = (props) => {
   return (
     <TouchableOpacity onPress={ () => props.clickHandler(props.item) }>
       <View style={homeStyle.item}>
-        <Text>{props.category}</Text>
         <Text>{props.month}</Text>
+        <Text>{props.category}</Text>
         <Text>$ {props.budgetAmount}</Text>
       </View>
     </TouchableOpacity>
@@ -142,32 +144,39 @@ const homeStyle = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 10,
+    backgroundColor:'#7FD8BE'
   },
   item: {
+    display:'flex',
     paddingHorizontal: 15,
     paddingVertical: 20,
     borderBottomWidth: 1,
-    borderBottomColor: '#cccccc',
+    borderBottomColor: 'black',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    backgroundColor:'#FCEFEF',
+    marginVertical:10,
   },
   input: {
     padding: 10,
-    borderColor: '#cccccc',
+    borderColor: 'black',
     borderWidth: 1,
-    borderRadius: 10,
-    backgroundColor: '#ffffff',
+    borderRadius: 20,
+    backgroundColor: '#FCEFEF',
     marginVertical: 10,
   },
   button: {
-    backgroundColor: '#33ffcc',
+    backgroundColor: '#FCAB64',
     padding: 10,
-    borderRadius: 10,
+    borderRadius: 20,
+    borderWidth:1,
   },
   buttonDisabled: {
-    backgroundColor: '#c0f9eb',
+    backgroundColor: '#FCD29F',
     padding: 10,
-    borderRadius: 10,
+    borderRadius: 20,
+    borderWidth:1,
+    color:'black'
   },
   buttonText: {
     textAlign: 'center',

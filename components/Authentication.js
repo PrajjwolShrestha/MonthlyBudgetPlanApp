@@ -50,11 +50,13 @@ export const Authentication = ( props ) => {
         <TextInput 
           style={styles.inputField} 
           placeholder="email: you@email.com"
+          placeholderTextColor = "grey"
           onChangeText={ (userEmail) => checkUserEmailValid(userEmail) } 
         /> 
         <TextInput 
           style={styles.inputField}
           placeholder="password: min 8 characters" 
+          placeholderTextColor = "grey"
           secureTextEntry={true}
           onChangeText={ (userPassword) => checkUserPasswordValid(userPassword) }
         />
@@ -85,11 +87,13 @@ export const Authentication = ( props ) => {
         <Text style={styles.mainTitle}>Sign In</Text>
         <TextInput 
           style={styles.inputField} placeholder="Please enter your email here."
+          placeholderTextColor = "grey"
           onChangeText = { (userEmail) => { setUserEmail(userEmail) }} 
         /> 
         <TextInput 
           style={styles.inputField}
           placeholder="Please enter your password here." 
+          placeholderTextColor = "grey"
           secureTextEntry={true}
           onChangeText={ (userPassword) => { setUserPassword(userPassword) } }
         />
@@ -119,44 +123,58 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 10,
-    backgroundColor:'#C5E5EF',
+    backgroundColor:'#7FD8BE',
   },
   mainTitle: {
-    fontSize: 18,
+    fontSize: 32,
     textAlign: 'center',
-    color:'white',
+    color:'#0B0500',
   },
   inputField: {
     padding: 10,
     borderWidth: 1,
-    borderColor: '#777777',
+    borderColor: '#0B0500',
     marginVertical: 20,
+    backgroundColor:'#FCEFEF',
+    borderRadius:20,
   },
   btn: {
     padding: 10,
-    backgroundColor: '#0DD26B',
+    backgroundColor: '#FCAB64',
+    borderRadius:20,
+    borderWidth:1,
+    borderColor:'#0B0500',
   },
   btnText: {
-    color: '#eeeeee',
+    color: 'black',
     textAlign: 'center',
+    fontSize:16,
   },
   btnDisabled: {
     padding: 10,
-    backgroundColor: '#888888',
+    backgroundColor: '#FCD29F',
+    borderRadius:20,
+    borderWidth:1,
+    borderColor:'#0B0500',
   },
   textChanged : {
     textAlign: 'center',
     marginTop: 20,
+    fontSize:16,
   },
   altBtn: {
     marginTop: 10,
     padding: 10,
-    backgroundColor: '#0DD26B',
+    backgroundColor: '#FCAB64',
+    borderRadius:20,
+    fontSize:16,
+    borderWidth:1,
+    borderColor:'#0B0500',
 
 
   },
   altBtnText: {
-    color: 'blue',
+    color: 'black',
     textAlign: 'center',
   }
 }) 

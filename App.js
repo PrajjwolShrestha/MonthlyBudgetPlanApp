@@ -172,12 +172,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   signout: {
-    backgroundColor: '#444444',
+    backgroundColor: '#FCAB64',
     padding: 5,
     marginRight: 10,
-    borderRadius: 5,
+    borderRadius: 20,
+    borderWidth:1,
   },
   signOutText: {
-    color: '#eeeeee'
+    color: 'black'
   },
 });

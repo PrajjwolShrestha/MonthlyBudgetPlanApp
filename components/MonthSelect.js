@@ -52,9 +52,10 @@ export const MonthSelect = (props) => {
 const selectStyles = StyleSheet.create({
   selectView: {
     padding: 10,
-    borderColor: '#cccccc',
+    borderColor: 'black',
     borderWidth: 1,
-    borderRadius: 10,
+    borderRadius: 20,
+    backgroundColor:'#FCEFEF',
   },
   selectImage: {
     width: 15,
@@ -66,11 +67,11 @@ const selectStyles = StyleSheet.create({
   selectItem: {
     paddingVertical: 10,
     paddingHorizontal: 5,
-    borderBottomColor: '#dddddd',
+    borderBottomColor: '#FCAB64',
     borderBottomWidth: 1,
   },
   modalView: {
     marginTop: 100,
-    backgroundColor:'lightyellow',
+    backgroundColor:'#FCEFEF',
   },
 })
